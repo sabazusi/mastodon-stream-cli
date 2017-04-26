@@ -1,0 +1,16 @@
+{
+  "name": "mastodon-steam-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sabazusi",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^3.0.6",
+    "mastodon-api": "^1.2.0",
+    "openurl": "^1.1.1"
+  }
+}
