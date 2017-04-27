@@ -58,7 +58,7 @@ inquirer.prompt([
         Mastodon.getAuthorizationUrl(
           clientId,
           clientSecret,
-          'https://friends.nico',
+          baseUrl,
           'read',
           redirectUri
         ).then((url) => {
