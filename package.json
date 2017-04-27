@@ -11,6 +11,7 @@
   "dependencies": {
     "inquirer": "^3.0.6",
     "mastodon-api": "^1.2.0",
-    "openurl": "^1.1.1"
+    "openurl": "^1.1.1",
+    "striptags": "^3.0.1"
   }
 }

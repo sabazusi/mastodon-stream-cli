@@ -1,6 +1,7 @@
 const Mastodon = require('mastodon-api');
 const openurl = require('openurl');
 const inquirer = require('inquirer');
+const striptags = require('striptags');
 
 const emptyValidator = (name) => name ? true : 'Input something..';
 const streamTypeMap = {
@@ -64,7 +65,12 @@ inquirer.prompt([
                     api_url: `${baseUrl}/api/v1/`
                   });
                   const stream = mstdnClient.stream(streamTypeMap[streamType]);
-                  stream.on('message', (msg) => console.log(msg));
+                  stream.on('message', (msg) => {
+                    const { content } = msg.data;
+                    if (!content) return;
+                    console.log('=========');
+                    console.log(striptags(content));
+                  });
                 })
                 .catch(e => console.log(e));
             });
