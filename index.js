@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const Mastodon = require('mastodon-api');
 const openurl = require('openurl');
 const inquirer = require('inquirer');
