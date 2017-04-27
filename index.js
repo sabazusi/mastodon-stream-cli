@@ -2,6 +2,18 @@ const Mastodon = require('mastodon-api');
 const openurl = require('openurl');
 const inquirer = require('inquirer');
 const striptags = require('striptags');
+const chalk = require('chalk');
+
+const nameColors = [
+  chalk.styles.black,
+  chalk.styles.red,
+  chalk.styles.green,
+  chalk.styles.yellow,
+  chalk.styles.blue,
+  chalk.styles.magenta,
+  chalk.styles.cyan,
+  chalk.styles.white
+];
 
 const emptyValidator = (name) => name ? true : 'Input something..';
 const streamTypeMap = {
@@ -66,10 +78,11 @@ inquirer.prompt([
                   });
                   const stream = mstdnClient.stream(streamTypeMap[streamType]);
                   stream.on('message', (msg) => {
-                    const { content } = msg.data;
-                    if (!content) return;
-                    console.log('=========');
-                    console.log(striptags(content));
+                    const { account, content } = msg.data;
+                    if (!content || !account) return;
+                    const screenName = account['display_name'];
+                    const nameChalk = nameColors[ parseInt(account.id) % nameColors.length ];
+                    console.log(nameChalk.open + screenName + nameChalk.close + ': ' + chalk.gray(striptags(content)));
                   });
                 })
                 .catch(e => console.log(e));
